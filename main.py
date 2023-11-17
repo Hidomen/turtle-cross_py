@@ -14,7 +14,6 @@ def game():
     turtle = Turtle()
     levelboard = LevelBoard()
     cars = []
-    # cars = Cars()
     screen.setup(width=WIDTH, height=HEIGHT)
     screen.tracer(0)
 
@@ -27,7 +26,7 @@ def game():
     screen.onkey(turtle.down, "s")
 
     spawn_number = 0
-    difficulty = 5
+    anti_difficulty = 10
 
     while not game_over:
         
@@ -42,14 +41,13 @@ def game():
                 levelboard.gameover()
                 game_over = True
 
-        if not spawn_number % difficulty:
+        if not spawn_number % anti_difficulty:
             cars.append(Cars())
 
 
         if turtle.ycor() > FINISH_LINE:
-            # game_over = True
             levelboard.level_up()
-            difficulty -= 1
+            anti_difficulty -= 1
             turtle.reset()
 
     screen.exitonclick()
