@@ -18,7 +18,8 @@ class Cars(Turtle):
         self.goto(350,spawn_point)
         self.setheading(180)
 
-    def move(self):
-        self.forward(random.randint(20, 30))
+    def move(self, level):
+        if not self.xcor() < -350: 
+            self.forward(random.randint(round(10 + 1.1*level), round(20 + 1.1*level)))
 
         

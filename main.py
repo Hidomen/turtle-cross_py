@@ -35,7 +35,7 @@ def game():
         screen.update()
         
         for i in range(len(cars)):
-            cars[i].move()
+            cars[i].move(levelboard.show_level())
             # collision detect
             if turtle.distance(cars[i]) < 20:
                 levelboard.gameover()

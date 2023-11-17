@@ -28,3 +28,7 @@ class LevelBoard(Turtle):
         self.clear()
         self.goto(0,0)
         self.write(f"GAME OVER\n your score was {self.level}", align="center", font=("Courier", 36, "bold"))
+
+    
+    def show_level(self):
+        return self.level
