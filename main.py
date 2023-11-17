@@ -1,15 +1,21 @@
 from turtle import Screen
 from cars import Cars
 from p_turtle import Turtle
+from level_board import LevelBoard
 import time
 
+WIDTH = 600
+HEIGHT = 600
+
+FINISH_LINE = 250
 
 def game():
     screen = Screen()
     turtle = Turtle()
+    levelboard = LevelBoard()
     cars = []
     # cars = Cars()
-    screen.setup(width=600, height=600)
+    screen.setup(width=WIDTH, height=HEIGHT)
     screen.tracer(0)
 
 
@@ -33,15 +39,19 @@ def game():
             cars[i].move()
             # collision detect
             if turtle.distance(cars[i]) < 20:
+                levelboard.gameover()
                 game_over = True
 
         if not spawn_number % difficulty:
             cars.append(Cars())
 
 
-        if turtle.ycor() > 250:
-            game_over = True
-            print("you won")
+        if turtle.ycor() > FINISH_LINE:
+            # game_over = True
+            levelboard.level_up()
+            difficulty -= 1
+            turtle.reset()
+
     screen.exitonclick()
 
 
